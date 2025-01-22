@@ -1,10 +1,15 @@
-FROM node:22-alpine
+FROM node:18-alpine
 
 WORKDIR /home/app
 
-COPY . ./
+COPY package*.json ./
+COPY .env.docker .env
 
-RUN npm i
+RUN npm install
+
+RUN npm install -g tsx
+
+COPY . .
 
 EXPOSE 3333
 
