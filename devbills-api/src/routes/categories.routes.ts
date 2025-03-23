@@ -1,14 +1,16 @@
 import { Router } from "express";
 import { CategoriesController } from "../controllers/categories.controller";
+import { ParamsType, validator } from "../middlewares/validator.middleware";
+import { createCategorySchema } from "../dtos/categories.dto";
+import { CategoriesFactory } from "../factories/categories.factory";
 
 export const categoriesRoutes = Router();
 
-const controller = new CategoriesController();
+const controller = new CategoriesController(CategoriesFactory.getServiceInstance());
 
-categoriesRoutes.post("/", async (req, res) => {
-	try {
-		await controller.create(req, res);
-	} catch (error) {
-		res.status(500).json({ message: "Erro ao criar categoria", error });
-	}
-});
+categoriesRoutes.get("/", controller.index)
+
+categoriesRoutes.post("/", validator({
+	schema: createCategorySchema,
+	type: ParamsType.BODY
+}), controller.create);
