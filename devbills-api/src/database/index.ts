@@ -7,7 +7,7 @@ export async function setupMongo(): Promise<void> {
         }
 
         console.log("Connecting to MongoDB...");
-        await mongoose.connect(process.env.MONGODB_URL as string);
+        await mongoose.connect(process.env.MONGO_URL as string);
         console.log("Connected to MongoDB");
         
     } catch (error) {

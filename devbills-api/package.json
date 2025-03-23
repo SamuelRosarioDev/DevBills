@@ -8,6 +8,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
+    "http-status-codes": "^2.3.0",
     "mongoose": "^8.9.5"
   },
   "devDependencies": {
@@ -21,8 +22,8 @@
   },
   "main": "./src/server.ts",
   "scripts": {
-    "start": "tsc --watch",
-    "dev": "tsx --watch ."
+    "start": "tsc --watch ./src/server.ts",
+    "dev": "tsx --watch ./src/server.ts"
   },
   "type": "module"
 }
