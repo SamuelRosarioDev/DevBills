@@ -8,7 +8,7 @@ export const categoriesRoutes = Router();
 
 const controller = new CategoriesController(CategoriesFactory.getServiceInstance());
 
-categoriesRoutes.get("/", controller.index)
+categoriesRoutes.get("/", controller.index);
 
 categoriesRoutes.post("/", validator({
 	schema: createCategorySchema,

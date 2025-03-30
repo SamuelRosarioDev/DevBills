@@ -11,7 +11,7 @@ export class CategoriesController {
 		try {
 			const { title, color } = req.body;
 			const result = await this.categoriesService.create({ title, color });
-			res.status(StatusCodes.CREATED).json(result); // ✅ Sem `return`
+			res.status(StatusCodes.CREATED).json(result); 
 		} catch (err) {
 			next(err);
 		}
@@ -20,7 +20,7 @@ export class CategoriesController {
 	index = async (_: Request, res: Response, next: NextFunction) => {
 		try {
 			const result = await this.categoriesService.index();
-			res.status(StatusCodes.OK).json(result); // ✅ Sem `return`
+			res.status(StatusCodes.OK).json(result); 
 		} catch (err) {
 			next(err);
 		}
