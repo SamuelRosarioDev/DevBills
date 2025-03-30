@@ -3,11 +3,12 @@ import type { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { TransactionsService } from "../services/transactions.service";
 import { CreateTransactionDTO, GetDashboardDTO, IndexTransactionsDTO } from "../dtos/transactions.dto";
+import { BodyRequest, QueryRequest } from "./types";
 
 export class TransactionsController {
     constructor(private transactionsSerice: TransactionsService) {}
 
-    create = async (req: Request<unknown, unknown, CreateTransactionDTO>, res: Response, next: NextFunction) => {
+    create = async (req: BodyRequest< CreateTransactionDTO>, res: Response, next: NextFunction) => {
         try {
             const { title, amount, categoryId, date, type } = req.body;
             const result = await this.transactionsSerice.create({title, amount, categoryId, date, type  });
@@ -16,7 +17,7 @@ export class TransactionsController {
             next(err);
         }
     };
-    index = async (req: Request<unknown, unknown, unknown, IndexTransactionsDTO>, res: Response, next: NextFunction) => {
+    index = async (req: QueryRequest< IndexTransactionsDTO>, res: Response, next: NextFunction) => {
         try {
             const { title, categoryId, beginDate, endDate } = req.query;
             const result = await this.transactionsSerice.index({ title, categoryId, beginDate, endDate });
@@ -25,7 +26,7 @@ export class TransactionsController {
             next(err);
         }
     };
-    getDashboard = async (req: Request<unknown, unknown, unknown, GetDashboardDTO>, res: Response, next: NextFunction) => {
+    getDashboard = async (req: QueryRequest< GetDashboardDTO>, res: Response, next: NextFunction) => {
         try {
             const { beginDate, endDate } = req.query;
             const result = await this.transactionsSerice.getDashboard({ beginDate, endDate });
@@ -35,7 +36,7 @@ export class TransactionsController {
         }
     };
 
-    getFinancialEvolution = async (req: Request<unknown, unknown, unknown, GetFinancialEvolutionDTO>, res: Response, next: NextFunction) => {
+    getFinancialEvolution = async (req: QueryRequest< GetFinancialEvolutionDTO>, res: Response, next: NextFunction) => {
         try {
             const { year } = req.query;
             const result = await this.transactionsSerice.getFinancialEvolution({ year });
