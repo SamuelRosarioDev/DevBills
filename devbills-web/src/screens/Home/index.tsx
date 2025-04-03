@@ -4,7 +4,8 @@ import { Card } from "../../components/Card";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { Title } from "../../components/Title";
-import { Balance, ChartAction, ChartContainer, ChartContent, Filters, Header, InputGroup, Main, Section } from "./styles";
+import { Transaction } from "../../components/Transaction";
+import { Aside, Balance, ChartAction, ChartContainer, ChartContent, Filters, Header, InputGroup, Main, SearchTransaction, Section } from "./styles";
 import { InputMask } from "@react-input/mask"
 
 export function Home() {
@@ -51,6 +52,16 @@ export function Home() {
                         <ChartContent></ChartContent>
                     </ChartContainer>
                 </Section>
+                <Aside>
+                    <header>
+                        <Title title="Transações" subtitle="Receitas e Gastos no perído" />
+                        <SearchTransaction>
+                            <Input variant="black" placeholder="Procurar transação" />
+                            <ButtonIcon />
+                        </SearchTransaction>
+                        <Transaction id={1} amount={200000} date="09/09/2024" category={{ title: "Alimentação", color: "#ff33bb" }} title="Mercado" />
+                    </header>
+                </Aside>
             </Main>
         </>
 
