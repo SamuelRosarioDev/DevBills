@@ -4,6 +4,8 @@
     "": {
       "name": "devbills-web",
       "dependencies": {
+        "@phosphor-icons/react": "^2.1.7",
+        "@react-input/mask": "^2.0.4",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "styled-components": "^6.1.16",
@@ -159,6 +161,12 @@
     "@nodelib/fs.stat": ["@nodelib/fs.stat@2.0.5", "", {}, "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A=="],
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
+
+    "@phosphor-icons/react": ["@phosphor-icons/react@2.1.7", "", { "peerDependencies": { "react": ">= 16.8", "react-dom": ">= 16.8" } }, "sha512-g2e2eVAn1XG2a+LI09QU3IORLhnFNAFkNbo2iwbX6NOKSLOwvEMmTa7CgOzEbgNWR47z8i8kwjdvYZ5fkGx1mQ=="],
+
+    "@react-input/core": ["@react-input/core@2.0.2", "", { "peerDependencies": { "@types/react": ">=16.8", "react": ">=16.8 || ^19.0.0-rc", "react-dom": ">=16.8 || ^19.0.0-rc" }, "optionalPeers": ["@types/react"] }, "sha512-xLLBueYFbant9308uv3cIJQz5NYSixeGspjP3Nt6jogRHTcHYMRmlVFUuSzQiP8Z8/5BdnPkudRSsN0/AJ1fbw=="],
+
+    "@react-input/mask": ["@react-input/mask@2.0.4", "", { "dependencies": { "@react-input/core": "^2.0.2" }, "peerDependencies": { "@types/react": ">=16.8", "react": ">=16.8 || ^19.0.0-rc", "react-dom": ">=16.8 || ^19.0.0-rc" }, "optionalPeers": ["@types/react"] }, "sha512-NOielvQSBOlGLVuEcxtkjaGneC0GJFXjC7KOF99ed9H9XSDruWnQirjht5uSbWqLeeiOup0VD2YjM+6FH+aWBg=="],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.38.0", "", { "os": "android", "cpu": "arm" }, "sha512-ldomqc4/jDZu/xpYU+aRxo3V4mGCV9HeTgUBANI3oIQMOL+SsxB+S2lxMpkFp5UamSS3XuTMQVbsS24R4J4Qjg=="],
 
