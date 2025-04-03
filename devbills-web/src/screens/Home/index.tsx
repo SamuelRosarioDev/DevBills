@@ -1,9 +1,10 @@
 import { Button } from "../../components/Button";
 import { ButtonIcon } from "../../components/ButtonIcon";
+import { Card } from "../../components/Card";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { Title } from "../../components/Title";
-import { Filters, Header, InputGroup, Main, Section } from "./styles";
+import { Balance, Filters, Header, InputGroup, Main, Section } from "./styles";
 import { InputMask } from "@react-input/mask"
 
 export function Home() {
@@ -27,6 +28,11 @@ export function Home() {
                             <ButtonIcon/>
                         </InputGroup>
                     </Filters>
+                    <Balance>
+                    <Card title="Saldo" amount={123} variant="balance"/>
+                    <Card title="Saldo" amount={123} variant="incomes"/>
+                    <Card title="Saldo" amount={123} variant="expenses"/>
+                    </Balance>
                 </Section>
             </Main>
         </>
