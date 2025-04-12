@@ -1,11 +1,12 @@
 import { Button } from "../../components/Button";
 import { ButtonIcon } from "../../components/ButtonIcon";
 import { Card } from "../../components/Card";
+import { Dialog } from "../../components/Dialog";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { Title } from "../../components/Title";
 import { Transaction } from "../../components/Transaction";
-import { Aside, Balance, ChartAction, ChartContainer, ChartContent, Filters, Header, InputGroup, Main, SearchTransaction, Section } from "./styles";
+import { Aside, Balance, ChartAction, ChartContainer, ChartContent, Filters, Header, InputGroup, Main, SearchTransaction, Section, TransactionGroup } from "./styles";
 import { InputMask } from "@react-input/mask"
 
 export function Home() {
@@ -14,7 +15,7 @@ export function Home() {
             <Header>
                 <Logo />
                 <div>
-                    <Button>Nova transação</Button>
+                    <Dialog trigger={<Button>Nova transação</Button>}>Olá</Dialog>
                     <Button>Nova categoria</Button>
                 </div>
             </Header>
@@ -59,8 +60,10 @@ export function Home() {
                             <Input variant="black" placeholder="Procurar transação" />
                             <ButtonIcon />
                         </SearchTransaction>
-                        <Transaction id={1} amount={200000} date="09/09/2024" category={{ title: "Alimentação", color: "#ff33bb" }} title="Mercado" />
                     </header>
+                    <TransactionGroup>
+                        <Transaction id={1} amount={200000} date="09/09/2024" category={{ title: "Alimentação", color: "#ff33bb" }} title="Mercado" />
+                    </TransactionGroup>
                 </Aside>
             </Main>
         </>
