@@ -1,12 +1,5 @@
-import { Home } from "./screens/Home";
-import GlobalStyles from "./styles/global";
+import AppRoutes from "./routes";
 
 export function App() {
-
-  return (
-    <>
-      <GlobalStyles/>
-      <Home />
-    </>
-  )
+    return <AppRoutes />; 
 }
