@@ -1,5 +1,5 @@
-import { CategoryModel } from './../database/schemas/category.schema';
 import { CategoriesRepository } from "../database/repositories/categories.repository";
+import { CategoryModel } from './../database/schemas/category.schema';
 import { CategoriesService } from "../services/categories.service";
 
 export class CategoriesFactory {
@@ -10,7 +10,7 @@ export class CategoriesFactory {
             return this.categoriesService
         }
 
-        const repository =  new CategoriesRepository(CategoryModel)
+        const repository = new CategoriesRepository(CategoryModel)
         const service = new CategoriesService(repository)
 
         this.categoriesService = service;

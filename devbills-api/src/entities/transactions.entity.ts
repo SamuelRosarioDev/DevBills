@@ -11,7 +11,8 @@ type TransactionProps = {
     amount: number;
     date: Date;
     category: Category;
-    type:TransactionType;
+    type: TransactionType;
+    userId: string; // ✅ Adicionar userId
 }
 
 export class Transaction {
@@ -20,14 +21,16 @@ export class Transaction {
     public amount: number;
     public date: Date;
     public category: Category;
-    public type:TransactionType;
+    public type: TransactionType;
+    public userId: string; // ✅ Adicionar userId
 
-    constructor({ _id, title, amount, date, category, type }: TransactionProps) {
+    constructor({ _id, title, amount, date, category, type, userId }: TransactionProps) {
         this._id = _id;
         this.title = title;
         this.amount = amount;
         this.date = new Date(date);
         this.category = new Category(category);
         this.type = type;
+        this.userId = userId; // ✅ Inicializar userId
     }
 }

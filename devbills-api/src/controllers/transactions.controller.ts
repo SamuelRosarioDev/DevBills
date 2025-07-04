@@ -1,48 +1,102 @@
-import { GetFinancialEvolutionDTO, getFinancialEvolutionSchema } from './../dtos/transactions.dto';
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { TransactionsService } from "../services/transactions.service";
-import { CreateTransactionDTO, GetDashboardDTO, IndexTransactionsDTO } from "../dtos/transactions.dto";
-import { BodyRequest, QueryRequest } from "./types";
+import type { GetFinancialEvolutionDTO } from "./../dtos/transactions.dto";
+import type {
+	CreateTransactionDTO,
+	GetDashboardDTO,
+	IndexTransactionsDTO,
+} from "../dtos/transactions.dto";
+import type { TransactionsService } from "../services/transactions.service";
+import type { BodyRequest, QueryRequest } from "./types";
 
 export class TransactionsController {
-    constructor(private transactionsSerice: TransactionsService) {}
+	constructor(private transactionsService: TransactionsService) {}
 
-    create = async (req: BodyRequest< CreateTransactionDTO>, res: Response, next: NextFunction) => {
-        try {
-            const { title, amount, categoryId, date, type } = req.body;
-            const result = await this.transactionsSerice.create({title, amount, categoryId, date, type  });
-            res.status(StatusCodes.CREATED).json(result); // ✅ Sem `return`
-        } catch (err) {
-            next(err);
-        }
-    };
-    index = async (req: QueryRequest< IndexTransactionsDTO>, res: Response, next: NextFunction) => {
-        try {
-            const { title, categoryId, beginDate, endDate } = req.query;
-            const result = await this.transactionsSerice.index({ title, categoryId, beginDate, endDate });
-            res.status(StatusCodes.OK).json(result); // ✅ Sem `return`
-        } catch (err) {
-            next(err);
-        }
-    };
-    getDashboard = async (req: QueryRequest< GetDashboardDTO>, res: Response, next: NextFunction) => {
-        try {
-            const { beginDate, endDate } = req.query;
-            const result = await this.transactionsSerice.getDashboard({ beginDate, endDate });
-            res.status(StatusCodes.OK).json(result); // ✅ Sem `return`
-        } catch (err) {
-            next(err);
-        }
-    };
+	create = async (
+		req: BodyRequest<CreateTransactionDTO>,
+		res: Response,
+		next: NextFunction,
+	) => {
+		try {
+			const userId = req.userId;
+			if (!userId) {
+				throw new Error("User ID is required");
+			}
+			const { title, amount, date, categoryId, type } = req.body;
+			const result = await this.transactionsService.create({
+				title,
+				amount,
+				date,
+				categoryId,
+				type,
+			}, userId);
+			res.status(StatusCodes.CREATED).json(result);
+		} catch (err) {
+			next(err);
+		}
+	};
 
-    getFinancialEvolution = async (req: QueryRequest< GetFinancialEvolutionDTO>, res: Response, next: NextFunction) => {
-        try {
-            const { year } = req.query;
-            const result = await this.transactionsSerice.getFinancialEvolution({ year });
-            res.status(StatusCodes.OK).json(result); // ✅ Sem `return`
-        } catch (err) {
-            next(err);
-        }
-    };
+	index = async (
+		req: QueryRequest<IndexTransactionsDTO>,
+		res: Response,
+		next: NextFunction,
+	) => {
+		try {
+			const userId = req.userId;
+			if (!userId) {
+				throw new Error("User ID is required");
+			}
+			const { title, categoryId, beginDate, endDate } = req.query;
+			const result = await this.transactionsService.index({
+				title,
+				categoryId,
+				beginDate,
+				endDate,
+			}, userId);
+			res.status(StatusCodes.OK).json(result);
+		} catch (err) {
+			next(err);
+		}
+	};
+
+	getDashboard = async (
+		req: QueryRequest<GetDashboardDTO>,
+		res: Response,
+		next: NextFunction,
+	) => {
+		try {
+			const userId = req.userId;
+			if (!userId) {
+				throw new Error("User ID is required");
+			}
+			const { beginDate, endDate } = req.query;
+			const result = await this.transactionsService.getDashboard({
+				beginDate,
+				endDate,
+			}, userId);
+			res.status(StatusCodes.OK).json(result);
+		} catch (err) {
+			next(err);
+		}
+	};
+
+	getFinancialEvolution = async (
+		req: QueryRequest<GetFinancialEvolutionDTO>,
+		res: Response,
+		next: NextFunction,
+	) => {
+		try {
+			const userId = req.userId;
+			if (!userId) {
+				throw new Error("User ID is required");
+			}
+			const { year } = req.query;
+			const result = await this.transactionsService.getFinancialEvolution({
+				year,
+			}, userId);
+			res.status(StatusCodes.OK).json(result);
+		} catch (err) {
+			next(err);
+		}
+	};
 }

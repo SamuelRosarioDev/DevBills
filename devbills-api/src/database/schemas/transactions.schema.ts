@@ -6,8 +6,8 @@ const TransactionSchema = new mongoose.Schema({
     amount: Number,
     type: String,
     date: Date,
-    category: CategorySchema
-
+    category: CategorySchema,    
+    userId: String
 }, { versionKey: false });
 
 export const TransactionModel = mongoose.model("Transaction", TransactionSchema);
